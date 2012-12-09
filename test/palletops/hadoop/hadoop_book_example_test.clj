@@ -6,7 +6,7 @@
    [palletops.crate.hadoop :only [hadoop-settings]]
    [pallet.test-utils :only [make-node]]))
 
-(def nn {:roles #{:name-node :job-tracker} :node (make-node "n")})
+(def nn {:roles #{:namenode :jobtracker} :node (make-node "n")})
 
 (deftest compile-test
   (is

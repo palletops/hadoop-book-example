@@ -4,7 +4,7 @@
    [pallet.actions
     :only [directory exec-checked-script file remote-file remote-file-content]]
    [pallet.crate :only [def-plan-fn get-settings]]
-   [palletops.crate.hadoop :only [hadoop-exec hadoop-rmdir]]
+   [palletops.crate.hadoop :only [hadoop-exec hadoop-rmdir hadoop-jar]]
    clojure.test))
 
 (def book-examples
@@ -32,11 +32,12 @@
 
 (def-plan-fn run-books
   []
-  [{:keys [home] :as settings} (get-settings :hadoop {})]
   (hadoop-rmdir "books-output/")
-  (with-action-options {:script-dir home}
-    (hadoop-exec "jar" "hadoop-examples-*.jar" "wordcount"
-                 "books/" "books-output/")))
+  (hadoop-run
+   {:jar {:remote-file "hadoop-examples-*.jar"}
+    :main "wordcount"
+    :input "books/"
+    :output "books-output/"}))
 
 (def-plan-fn get-books-output
   []
