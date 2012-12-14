@@ -3,12 +3,12 @@
   :url "https://github.com/palletops/hadoop-book-example"
   :license {:name "All rights reserved."}
   :dependencies [[org.clojure/clojure "1.4.0"]
-                 [org.cloudhoist/pallet "0.8.0-SNAPSHOT"]]
+                 [org.cloudhoist/pallet "0.8.0-alpha.6"]]
   :profiles {:dev
-             {:dependencies [[org.cloudhoist/pallet-vmfest "0.2.1-SNAPSHOT"]
-                             [org.cloudhoist/pallet "0.8.0-SNAPSHOT"
+             {:dependencies [[org.cloudhoist/pallet-vmfest "0.2.1"]
+                             [org.cloudhoist/pallet "0.8.0-alpha.6"
                               :classifier "tests"]
-                             [com.palletops/hadoop-crate "0.1.0-SNAPSHOT"]
+                             [com.palletops/hadoop-crate "0.1.0"]
                              [ch.qos.logback/logback-classic "1.0.0"]]}}
   :repositories
   {"sonatype-snapshots" "https://oss.sonatype.org/content/repositories/snapshots"
