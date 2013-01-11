@@ -3,7 +3,7 @@
    [pallet.action :only [with-action-options]]
    [pallet.actions
     :only [directory exec-checked-script file remote-file remote-file-content]]
-   [pallet.crate :only [def-plan-fn get-settings]]
+   [pallet.crate :only [defplan get-settings]]
    [palletops.crate.hadoop :only [hadoop-exec hadoop-rmdir hadoop-jar]]
    clojure.test))
 
@@ -14,36 +14,36 @@
 (def book-dir "/tmp/books")
 (def book-output-file "/tmp/books-output")
 
-(def-plan-fn download-books
+(defplan download-books
   []
-  [{:keys [owner group] :as settings} (get-settings :hadoop {})]
-  (directory book-dir :owner owner :group group :mode "0755")
-  (map
-   #(remote-file
-    (str book-dir "/" %)
-    :url (str "https://hadoopbooks.s3.amazonaws.com/" %)
-    :owner owner :group group :mode "0755")
-   book-examples))
+  (let [{:keys [owner group] :as settings} (get-settings :hadoop {})]
+    (directory book-dir :owner owner :group group :mode "0755")
+    (map
+     #(remote-file
+       (str book-dir "/" %)
+       :url (str "https://hadoopbooks.s3.amazonaws.com/" %)
+       :owner owner :group group :mode "0755")
+     book-examples)))
 
-(def-plan-fn import-books-to-hdfs
+(defplan import-books-to-hdfs
   []
   (hadoop-rmdir "books/")
   (hadoop-exec "dfs" "-copyFromLocal" book-dir "books/"))
 
-(def-plan-fn run-books
+(defplan run-books
   []
   (hadoop-rmdir "books-output/")
-  (hadoop-run
+  (hadoop-jar
    {:jar {:remote-file "hadoop-examples-*.jar"}
     :main "wordcount"
     :input "books/"
     :output "books-output/"}))
 
-(def-plan-fn get-books-output
+(defplan get-books-output
   []
-  [{:keys [owner group] :as settings} (get-settings :hadoop {})]
-  (file book-output-file :action :delete)
-  (hadoop-exec "dfs" "-getmerge" "books-output" book-output-file)
-  [result (exec-checked-script
-           "Retrieve books output"
-           ("head" ~book-output-file))])
+  (let [{:keys [owner group] :as settings} (get-settings :hadoop {})]
+    (file book-output-file :action :delete)
+    (hadoop-exec "dfs" "-getmerge" "books-output" book-output-file)
+    (exec-checked-script
+     "Retrieve books output"
+     ("head" ~book-output-file))))

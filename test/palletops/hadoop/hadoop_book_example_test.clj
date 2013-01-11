@@ -8,6 +8,7 @@
 
 (def nn {:roles #{:namenode :jobtracker} :node (make-node "n")})
 
+
 (deftest compile-test
   (is
    (build-actions {:service-state [nn]}
