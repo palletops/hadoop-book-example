@@ -1,4 +1,4 @@
-(defproject com.palletops/hadoop-book-example "0.1.0-SNAPSHOT"
+(defproject com.palletops/hadoop-book-example "0.1.0"
   :description "Hadoop book example"
   :url "https://github.com/palletops/hadoop-book-example"
   :license {:name "All rights reserved."}

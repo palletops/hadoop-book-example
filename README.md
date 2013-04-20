@@ -1,13 +1,18 @@
 # hadoop-book-example
 
-A Clojure library designed to ... well, that part is up to you.
+Provides pallet plan functions to run a hadoop job for the examples from the
+hadoop book.
 
 ## Usage
 
-FIXME
+Add the following to your dependencies:
+
+```
+[com.palletops/hadoop-book-example "0.1.0"]
+```
 
 ## License
 
-Copyright © 2012 FIXME
+Copyright © 2012, 2013 Hugo Duncan
 
-Distributed under the Eclipse Public License, the same as Clojure.
+All Rights Reserved.
