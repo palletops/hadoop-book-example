@@ -3,4 +3,4 @@
   :url "https://github.com/palletops/hadoop-book-example"
   :license {:name "All rights reserved."}
   :dependencies [[org.clojure/clojure "1.4.0"]
-                 [com.palletops/pallet "0.8.0-beta.8"]])
+                 [com.palletops/pallet "0.8.0-RC.4"]])
