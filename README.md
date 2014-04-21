@@ -8,7 +8,7 @@ hadoop book.
 Add the following to your dependencies:
 
 ```
-[com.palletops/hadoop-book-example "0.1.0"]
+[com.palletops/hadoop-book-example "0.1.1"]
 ```
 
 ## License
