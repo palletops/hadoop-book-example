@@ -8,11 +8,11 @@ hadoop book.
 Add the following to your dependencies:
 
 ```
-[com.palletops/hadoop-book-example "0.1.0"]
+[com.palletops/hadoop-book-example "0.1.1"]
 ```
 
 ## License
 
-Copyright © 2012, 2013 Hugo Duncan
+Licensed under [EPL](http://www.eclipse.org/legal/epl-v10.1.1.html)
 
-All Rights Reserved.
+Copyright © 2012-2014 Hugo Duncan, Antoni Batchelli
